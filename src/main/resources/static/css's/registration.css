@@ -1,0 +1,67 @@
+/* .floatLabe  {
+    /* text-align:center; */
+
+/* } */
+
+.regist {
+  box-sizing: border-box;
+  margin-top: 300px;
+}
+
+div {
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0;
+  background-color: black;
+}
+
+#lname,#login,#name,#password,#register,#confirm_password{
+  width: 15%;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  color: black;
+}
+
+.content {
+  margin: 50px auto;
+  text-align: center;
+}
+
+/*input[type=text] {*/
+  /*width: 15%;*/
+  /*padding: 15px;*/
+  /*margin: 0;*/
+  /*text-align: center;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*background: white;*/
+  /*color: black;*/
+/*}*/
+
+/*input[type=text]:focus, input[type=password]:focus {*/
+  /*background-color: #ddd;*/
+  /*outline: none;*/
+/*}*/
+
+
+/*input[type=submit] {*/
+  /*background: white;*/
+  /*color: black;*/
+  /*padding: 15px;*/
+  /*margin: 8px 0;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*cursor: pointer;*/
+  /*width: 10%;*/
+/*}*/
