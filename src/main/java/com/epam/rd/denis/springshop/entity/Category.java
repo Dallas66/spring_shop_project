@@ -1,9 +1,25 @@
 package com.epam.rd.denis.springshop.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 public class Category {
-    private int id;
-    private String name;
+
+    public Category(@NotNull int id, @NotNull String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @NotNull
+    private  int id;
+    @NotNull
+    private  String name;
+    private List<Product> prodList;
+
 }

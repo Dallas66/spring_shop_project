@@ -1,6 +1,8 @@
 div {
   box-sizing: border-box;
+
 }
+
 
 header {}
 
@@ -312,27 +314,48 @@ a {
   overflow: auto;
 }
 
-input[type=submit] {
-  background: white;
-  color: black;
-  padding: 15px;
-  margin-left: 480px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 10%;
-}
+/*input[type=submit] {*/
+  /*background: white;*/
+  /*color: black;*/
+  /*padding: 15px;*/
+  /*margin-left: 480px;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*cursor: pointer;*/
+  /*width: 10%;*/
+/*}*/
+/*#Search{*/
+  /*width: 50%;*/
+  /*padding: 15px;*/
+  /*margin-left: 245px;*/
+  /*text-align: center;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*background: white;*/
+  /*color: black;*/
+/*}*/
 
-input[type=text] {
-  width: 50%;
-  padding: 15px;
-  margin-left: 245px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
-  color: black;
-}
+/*#submit {*/
+  /*background: white;*/
+  /*color: black;*/
+  /*padding: 15px;*/
+  /*margin-left: 480px;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*cursor: pointer;*/
+  /*width: 10%;*/
+/*}*/
+
+/*input[type=text] {*/
+  /*width: 50%;*/
+  /*padding: 15px;*/
+  /*margin-left: 245px;*/
+  /*text-align: center;*/
+  /*border: 1px solid #ccc;*/
+  /*border-radius: 4px;*/
+  /*background: white;*/
+  /*color: black;*/
+/*}*/
 
 .itemSearch{
   vertical-align: top;

@@ -1,6 +1,9 @@
 package com.epam.rd.denis.springshop.service.impl;
 
+import com.epam.rd.denis.springshop.customException.InvalidPasswordException;
+import com.epam.rd.denis.springshop.customException.UserNotFoundException;
 import com.epam.rd.denis.springshop.dao.UserDao;
+import com.epam.rd.denis.springshop.entity.Login;
 import com.epam.rd.denis.springshop.entity.User;
 import com.epam.rd.denis.springshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +22,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authenticateUser(String login, String password) {
-        User userReturn = userDao.getUserByLogin(login);
-//        if (!userReturn.getPassword().equals(password))
-//            return null;
+    public User authenticateUser(Login login) throws UserNotFoundException, InvalidPasswordException {
+        User userReturn = userDao.getUserByLogin(login.getLogin());
+        if (userReturn == null){
+            throw new UserNotFoundException();
+        }
+        if (!userReturn.getPassword().equals(login.getPassword())){
+            throw new InvalidPasswordException();
+        }
         return userReturn;
     }
 

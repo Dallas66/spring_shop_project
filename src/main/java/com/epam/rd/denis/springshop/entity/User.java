@@ -1,7 +1,7 @@
 package com.epam.rd.denis.springshop.entity;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
+
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -9,17 +9,22 @@ import javax.validation.constraints.NotNull;
 @Data
 @ToString(includeFieldNames=true)
 public class User {
-    /*private int id;*/
     @NotNull
-    @NotEmpty(message = "Please enter your name.")
+    private int id;
+    @NotNull
+    @NotEmpty
     private String name;
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Please enter your Last Name.")
     private String lname;
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Please enter your Login.")
     private String login;
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Please enter your Password.")
     private String password;
+    @NotEmpty(message = "Please rewrite your Password")
+    private String confirmPassword;
+    @NotNull
+    private RoleEnum role;
 }

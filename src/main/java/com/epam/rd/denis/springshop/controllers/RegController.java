@@ -1,8 +1,11 @@
 package com.epam.rd.denis.springshop.controllers;
 
+import com.epam.rd.denis.springshop.entity.Login;
+import com.epam.rd.denis.springshop.entity.RoleEnum;
 import com.epam.rd.denis.springshop.entity.User;
 import com.epam.rd.denis.springshop.managers.UserManager;
 import com.epam.rd.denis.springshop.service.UserService;
+import com.epam.rd.denis.springshop.validators.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,8 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-
 @Controller
 public class RegController {
 
@@ -23,6 +24,8 @@ public class RegController {
     @Autowired
     UserManager userManager;
 
+
+
     @GetMapping("/registration")
     public ModelAndView regPage(@ModelAttribute("user") User user){
         ModelAndView modelAndView = new ModelAndView();
@@ -30,7 +33,7 @@ public class RegController {
         return modelAndView;
     }
 
-    @PostMapping("/registrProcess")
+    @PostMapping("/registration")
     public ModelAndView confRegPage(@ModelAttribute("user") @Validated User user, BindingResult result, Errors errors){
 
 //        userService.addUser(user);
@@ -38,7 +41,9 @@ public class RegController {
 //        modelAndView.setViewName("autorization");
 //        return modelAndView;
 
+        new PasswordValidator().validate(user, result);
         if (!result.hasErrors()) {
+            user.setRole(RoleEnum.USER);
             userService.addUser(user);
         }
         if (result.hasErrors()) {
@@ -46,8 +51,8 @@ public class RegController {
             return modelAndView;
 
         }
-        else {
-            return new ModelAndView("autorization");
-        }
+
+        return new ModelAndView("autorization","loginModel",new Login());
+
     }
 }
