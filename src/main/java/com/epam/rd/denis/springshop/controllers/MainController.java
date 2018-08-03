@@ -1,10 +1,11 @@
 package com.epam.rd.denis.springshop.controllers;
 
-import com.epam.rd.denis.springshop.dao.OrderDao;
+import com.epam.rd.denis.springshop.dao.OrderRepository;
 import com.epam.rd.denis.springshop.entity.Category;
 import com.epam.rd.denis.springshop.entity.Product;
 import com.epam.rd.denis.springshop.entity.Search;
 import com.epam.rd.denis.springshop.managers.UserManager;
+import com.epam.rd.denis.springshop.service.OrderService;
 import com.epam.rd.denis.springshop.service.ProductService;
 import com.epam.rd.denis.springshop.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MainController {
     @Autowired
     CategoryServiceImpl categoryService;
     @Autowired
-    OrderDao orderDao;
+    OrderService orderService;
 
     @GetMapping("/index1")
     public ModelAndView auth() {
@@ -32,20 +33,20 @@ public class MainController {
 
         List<Category> listOfCategory = categoryService.getCategoryList();
 
-        for (Category category : listOfCategory) {
-            category.setProdList(productService.getProductsByCategory(category.getName()));
-        }
-
-        int sum = 0;
-        for (Product product : orderDao.getOrder().getProductList()) {
-            sum += product.getPrice();
-        }
+//        for (Category category : listOfCategory) {
+//            category.setProductList(productService.getProductsByCategory(category.getName()));
+//        }
+//
+//        int sum = 0;
+//        for (Product product : orderRepository.getOrder().getProductList()) {
+//            sum += product.getPrice();
+//        }
 
         modelAndView.addObject("categList", listOfCategory);
         modelAndView.addObject("user", userManager.getCurrentUser());
         modelAndView.addObject("search", new Search());
-        modelAndView.addObject("sum", sum);
-        modelAndView.addObject("orderList", orderDao.getOrder().getProductList());
+//        modelAndView.addObject("sum", );
+//        modelAndView.addObject("orderList", orderRepository.getOrder().getProductList());
         modelAndView.setViewName("index1");
 
         return modelAndView;
@@ -60,7 +61,7 @@ public class MainController {
         List<Category> listOfCategory = categoryService.getCategoryList();
 
         for (Category category : listOfCategory) {
-            category.setProdList(productService.getProductsByCategory(category.getName()));
+//            category.setProductList(productService.getProductsByCategory(category.getName()));
         }
 
         modelAndView.addObject("categList", listOfCategory);
@@ -73,12 +74,12 @@ public class MainController {
     @GetMapping("add/{id}")
     public ModelAndView addToCartById(@PathVariable int id, ModelAndView modelAndView) {
 
-        orderDao.addToOrder(productService.getProductById(id));
+//        orderService.addToOrder(productService.getProductById(id));
 
         int sum = 0;
-        for (Product product : orderDao.getOrder().getProductList()) {
-            sum += product.getPrice();
-        }
+//        for (Product product : orderRepository.getOrder().getProductList()) {
+//            sum += product.getPrice();
+//        }
 
         modelAndView.setViewName("redirect:/index1");
         return modelAndView;
@@ -86,7 +87,7 @@ public class MainController {
 
     @GetMapping("delete/{id}")
     public ModelAndView deleteFromCart(@PathVariable int id, ModelAndView modelAndView) {
-        orderDao.removeFromOrder(productService.getProductById(id));
+//        orderRepository.removeFromOrder(productService.getProductById(id));
         modelAndView.setViewName("redirect:/index1");
         return modelAndView;
     }

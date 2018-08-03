@@ -6,6 +6,7 @@ import com.epam.rd.denis.springshop.entity.Login;
 import com.epam.rd.denis.springshop.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -15,7 +16,7 @@ public interface UserService {
 
     void updateUser(User user);
 
-    User getUserById(int id);
+    Optional<User> getUserById(long id);
 
     List<User> getUserList();
 }

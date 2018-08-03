@@ -1,20 +1,23 @@
 package com.epam.rd.denis.springshop.service;
 
+import com.epam.rd.denis.springshop.entity.Category;
 import com.epam.rd.denis.springshop.entity.CategoryNameEnum;
 import com.epam.rd.denis.springshop.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
+
     void addProduct(Product product);
 
-    void removeProduct(int id);
+    void removeProduct(long id);
 
     void updateProduct(Product product);
 
-    Product getProductById(int id);
+    Optional<Product> getProductById(long id);
 
-    List<Product> getProductsByCategory(CategoryNameEnum cat);
+    List<Product> getProductsByCategory(Category cat);
 
     List<Product> productList();
 

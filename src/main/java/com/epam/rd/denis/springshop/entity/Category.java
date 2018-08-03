@@ -1,25 +1,31 @@
 package com.epam.rd.denis.springshop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode
+@Entity(name = "categories")
 public class Category {
 
-    public Category(@NotNull int id, @NotNull CategoryNameEnum name) {
-        this.id = id;
-        this.name = name;
-    }
+//    public Category(@NotNull int id, @NotNull CategoryNameEnum name) {
+//        this.id = id;
+//        this.name = name;
+//    }
 
     @NotNull
-    private int id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @NotNull
+    @Column(name = "name")
+    @Enumerated(EnumType.STRING)
     private CategoryNameEnum name;
-    private List<Product> prodList;
+    @OneToMany(mappedBy = "categories")
+    private List<Product> products;
 
 }
