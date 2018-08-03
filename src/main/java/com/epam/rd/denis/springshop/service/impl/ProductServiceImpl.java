@@ -1,6 +1,7 @@
 package com.epam.rd.denis.springshop.service.impl;
 
 import com.epam.rd.denis.springshop.dao.ProductDao;
+import com.epam.rd.denis.springshop.entity.CategoryNameEnum;
 import com.epam.rd.denis.springshop.entity.Product;
 import com.epam.rd.denis.springshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByCategory(String cat) {
+    public List<Product> getProductsByCategory(CategoryNameEnum cat) {
         return productDao.getProductsByCategory(cat);
     }
 

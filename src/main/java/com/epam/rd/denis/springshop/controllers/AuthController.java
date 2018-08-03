@@ -14,17 +14,15 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class AuthController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
     UserManager userManager;
 
@@ -47,8 +45,7 @@ public class AuthController {
 
     @PostMapping("/autorization")
     public ModelAndView auth(@ModelAttribute("loginModel") Login login, BindingResult result, Errors errors/*@RequestParam String login,
-                             @RequestParam String password*/)  {
-
+                             @RequestParam String password*/) {
 
 
         ModelAndView modelAndView = new ModelAndView();
@@ -56,9 +53,9 @@ public class AuthController {
         try {
             user = userService.authenticateUser(login);
         } catch (UserNotFoundException e) {
-            errors.rejectValue("login","login.notfound");
+            errors.rejectValue("login", "login.notfound");
         } catch (InvalidPasswordException e) {
-            errors.rejectValue("password","login.invalidpassword");
+            errors.rejectValue("password", "login.invalidpassword");
         }
 
         if (!result.hasErrors()) {
@@ -67,9 +64,9 @@ public class AuthController {
 
         }
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             modelAndView.setViewName("autorization");
-            modelAndView.addObject("loginModel",login);
+            modelAndView.addObject("loginModel", login);
             return modelAndView;
         }
 

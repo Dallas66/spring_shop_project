@@ -11,7 +11,7 @@ public interface UserService {
 
     void addUser(User user);
 
-     User authenticateUser(Login login) throws UserNotFoundException, InvalidPasswordException;
+    User authenticateUser(Login login) throws UserNotFoundException, InvalidPasswordException;
 
     void updateUser(User user);
 

@@ -19,24 +19,24 @@
         <hr width="25%">
         <div class="content">
             <div>
-                <form:input path="name" id="name" name="name" placeholder="name"/>
+                <form:input path="name" id="name" name="name" placeholder="name"/><br>
                 <form:errors path="name"/>
             </div>
             <div>
-                <form:input path="lname" id="lname" name="lname" placeholder="lname"/>
+                <form:input path="lname" id="lname" name="lname" placeholder="lname"/><br>
                 <form:errors path="lname"/>
             </div>
 
             <div>
-                <form:input path="login" id="login" name="login" placeholder="login"/>
+                <form:input path="login" id="login" name="login" placeholder="login"/><br>
                 <form:errors path="login"/>
             </div>
             <div>
-                <form:input path="password" id="password" name="password" placeholder="password"/>
+                <form:input path="password" id="password" name="password" placeholder="password"/><br>
                 <form:errors path="password"/>
             </div>
             <div>
-                <form:input path="confirmPassword" id="confirmPassword" name="confirmPassword" type="text" placeholder="Confirm Password"/>
+                <form:input path="confirmPassword" id="confirmPassword" name="confirmPassword" type="text" placeholder="Confirm Password"/><br>
                 <form:errors path="confirmPassword"/>
             </div>
 
@@ -45,7 +45,7 @@
                 <form:button id="register" name="register">Register</form:button>
             </div>
         </div>
-        <p><a href="#">Авторизация</a></p>
+        <p><a href="autorization">Авторизация</a></p>
     </form:form>
 </div>
 </body>

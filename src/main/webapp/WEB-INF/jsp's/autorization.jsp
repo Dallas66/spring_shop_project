@@ -18,12 +18,12 @@
         <div class="content">
             <div>
                     <%--<label for="login" class="floatLabel" title="Login"></label>--%>
-                <form:input path="login" id="login" name="login" type="text" placeholder="login"/>
+                <form:input path="login" id="login" name="login" type="text" placeholder="login"/><br>
                 <form:errors path="login"/>
             </div>
             <div>
                     <%--<label for="password" class="floatLabel"></label>--%>
-                <form:input path="password" id="password" name="password" type="text" placeholder="password"/>
+                <form:input path="password" id="password" name="password" type="text" placeholder="password"/><br>
                 <form:errors path="password"/>
             </div>
             <div>

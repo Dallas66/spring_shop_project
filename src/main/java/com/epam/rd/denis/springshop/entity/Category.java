@@ -11,15 +11,15 @@ import java.util.List;
 @Data
 public class Category {
 
-    public Category(@NotNull int id, @NotNull String name) {
+    public Category(@NotNull int id, @NotNull CategoryNameEnum name) {
         this.id = id;
         this.name = name;
     }
 
     @NotNull
-    private  int id;
+    private int id;
     @NotNull
-    private  String name;
+    private CategoryNameEnum name;
     private List<Product> prodList;
 
 }

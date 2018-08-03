@@ -9,5 +9,6 @@ import java.util.List;
 public class Order {
     @NotNull
     private int id;
-    private List<Product> orderList;
+    private int userId;
+    private List<Product> productList;
 }

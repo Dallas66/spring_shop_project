@@ -21,9 +21,9 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 
         User user = userManager.getCurrentUser();
 
-        if (!user.getRole().equals(RoleEnum.ADMIN)){
-                response.sendRedirect("/index1");
-                return false;
+        if (!user.getRole().equals(RoleEnum.ADMIN)) {
+            response.sendRedirect("/index1");
+            return false;
         }
         return true;
     }

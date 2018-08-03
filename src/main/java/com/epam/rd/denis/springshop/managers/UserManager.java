@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 //@Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
-@Scope(value = "session",  proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserManager {
 
 

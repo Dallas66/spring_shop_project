@@ -25,21 +25,16 @@ public class RegController {
     UserManager userManager;
 
 
-
     @GetMapping("/registration")
-    public ModelAndView regPage(@ModelAttribute("user") User user){
+    public ModelAndView regPage(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registration");
         return modelAndView;
     }
 
     @PostMapping("/registration")
-    public ModelAndView confRegPage(@ModelAttribute("user") @Validated User user, BindingResult result, Errors errors){
+    public ModelAndView confRegPage(@ModelAttribute("user") @Validated User user, BindingResult result, Errors errors) {
 
-//        userService.addUser(user);
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("autorization");
-//        return modelAndView;
 
         new PasswordValidator().validate(user, result);
         if (!result.hasErrors()) {
@@ -52,7 +47,7 @@ public class RegController {
 
         }
 
-        return new ModelAndView("autorization","loginModel",new Login());
+        return new ModelAndView("autorization", "loginModel", new Login());
 
     }
 }

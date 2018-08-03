@@ -27,7 +27,7 @@
     <div class="menu">
         <ul class="nav">
             <li class="left"><a href="#">Name: ${user.name}</a></li>
-            <li class="left"><a href="#">Logout</a></li>
+            <li class="left"><a href="logout">Logout</a></li>
             <li class="right"><i class="fas fa-shopping-cart" aria-hidden="true"><span id="itemCount">2</span></i></li>
             <li class="right"><a href="#0" class="myBtn">Bag</a></li>
             <li class="right"><a href="#quickSearch" class="searchBtn">Search</a></li>
@@ -37,7 +37,7 @@
 
 <section>
     <c:forEach items="${categList}" var="category">
-    <h1 class="sticky">${category.name}</h1>
+    <h1 class="sticky">${category.name.toString()}</h1>
     <hr width="75%">
     <div class="site">
         <div class="title">
@@ -48,10 +48,10 @@
                 <div id="quick-view-pop-up${product.id}" class="overlay">
                     <div class="modal-content-prod">
                         <a class="close" href="#">&times;</a>
-                        <div class="image"><img src="../img/product.png" alt="Product"></div>
+                        <div class="image"><img src=${product.img} alt="Product"></div>
                         <div class="texta">${product.description}</div>
                         <div class="textb">${product.price} руб.</div>
-                        <div class="textc"><a href="#add-to-bag">Add to cart</a></div>
+                        <div class="textc"><a href="/add/${product.id}">Add to cart</a></div>
                     </div>
                 </div>
             </div>
@@ -79,38 +79,53 @@
         <div class="modal-body">
             <div class="cart-content">
                 <div class="cart-sections">
-                    <ul class="cart-list">
-                        <li class="cart-list-item">
-                            <div class="cart-body">
-                                <div class="cart-item-img"><img src="../img/product.png"/></div>
-                                <div class="cart-item-description">
+                    <c:forEach items="${orderList}" var="product">
+                        <div class="cart-body">
+                            <div class="cart-item-img"><img src=${product.img}/></div>
+                            <div class="cart-item-description">
                     <span>
-												<p class="cart-item-label">Metropolitan Clock</p>
-												<p class="cart-item-price">$200.00</p>
+												<p class="cart-item-label">${product.description}</p>
+												<p class="cart-item-price">${product.price}$</p>
 											</span>
-                                </div>
-                                <div class="cart-item-trash">
-                                    <span class="item-trash-ic">&#10799;</span>
-                                </div>
                             </div>
-                        </li>
-                        <li class="cart-list-item">
-                            <div class="cart-body">
-                                <div class="cart-item-img"><img src="../img/product.png"/></div>
-                                <div class="cart-item">
-                                    <div class="cart-item-description">
-                      <span>
-												<p class="cart-item-label">Mondaine Helvetica</p>
-												<p class="cart-item-price">$950.00</p>
-											</span>
-                                    </div>
-                                </div>
-                                <div class="cart-item-trash">
-                                    <span class="item-trash-ic">&#10799;</span>
-                                </div>
+                            <div class="cart-item-trash">
+                                <div class="item-trash-ic"><a href="/delete/${product.id}">remove</a></div>
+                                <%--<span class="item-trash-ic">&#10799;</span>--%>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </c:forEach>
+                    <%--<ul class="cart-list">--%>
+                        <%--<li class="cart-list-item">--%>
+                            <%--<div class="cart-body">--%>
+                                <%--<div class="cart-item-img"><img src="../img/product.png"/></div>--%>
+                                <%--<div class="cart-item-description">--%>
+                    <%--<span>--%>
+												<%--<p class="cart-item-label">Metropolitan Clock</p>--%>
+												<%--<p class="cart-item-price">$200.00</p>--%>
+											<%--</span>--%>
+                                <%--</div>--%>
+                                <%--<div class="cart-item-trash">--%>
+                                    <%--<span class="item-trash-ic">&#10799;</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li class="cart-list-item">--%>
+                            <%--<div class="cart-body">--%>
+                                <%--<div class="cart-item-img"><img src="../img/product.png"/></div>--%>
+                                <%--<div class="cart-item">--%>
+                                    <%--<div class="cart-item-description">--%>
+                      <%--<span>--%>
+												<%--<p class="cart-item-label">Mondaine Helvetica</p>--%>
+												<%--<p class="cart-item-price">$950.00</p>--%>
+											<%--</span>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                                <%--<div class="cart-item-trash">--%>
+                                    <%--<span class="item-trash-ic">&#10799;</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</li>--%>
+                    <%--</ul>--%>
                 </div>
             </div>
         </div>
@@ -121,9 +136,9 @@
                 <p class="b">Итог</p>
             </div>
             <div class="footerSum1">
-                <p class="a">10000</p>
+                <p class="a">${sum}</p>
                 <p class="b">10%</p>
-                <p class="b">9000</p>
+                <p class="b">900</p>
             </div>
             <div class="textbag">Оформить</div>
         </div>
@@ -155,7 +170,7 @@
                     <div id="quick-view-pop-up${product.id}" class="overlay">
                         <div class="modal-content-prod">
                             <a class="close" href="#">&times;</a>
-                            <div class="image"><img src="../img/product.png" alt="Product"></div>
+                            <div class="image"><img src=${product.img} alt="Product"></div>
                             <div class="texta">${product.description}</div>
                             <div class="textb">${product.price} руб.</div>
                             <div class="textc"><a href="#add-to-bag">Add to cart</a></div>

@@ -121,8 +121,8 @@
                 <td>${product.description}</td>
                 <td>${product.price}</td>
                 <td>${product.catName}</td>
-                <td><a href="<c:url value='/edit/${product.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${product.id}'/> ">Remove</a></td>
+                <td><a href="<c:url value='/admin/edit/${product.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/admin/remove/${product.id}'/> ">Remove</a></td>
             </tr>
         </c:forEach>
     </table>

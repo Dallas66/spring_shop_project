@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 public class Product {
     @NotNull
     private int id;
@@ -16,5 +16,5 @@ public class Product {
     private String img;
     private String description;
     private int price;
-    private String catName;
+    private CategoryNameEnum catName;
 }

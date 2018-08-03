@@ -20,7 +20,7 @@
 
 
 <h1>Add product</h1>
-<form:form action="/edit" method="post" modelAttribute="product">
+<form:form action="/admin/edit" method="post" modelAttribute="product">
     <table>
         <tr>
             <td>

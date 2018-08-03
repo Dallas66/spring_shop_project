@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
-@ToString(includeFieldNames=true)
+@ToString(includeFieldNames = true)
 public class User {
     @NotNull
     private int id;
@@ -25,6 +25,6 @@ public class User {
     private String password;
     @NotEmpty(message = "Please rewrite your Password")
     private String confirmPassword;
-    @NotNull
+
     private RoleEnum role;
 }

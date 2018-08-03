@@ -1,18 +1,21 @@
 package com.epam.rd.denis.springshop.dao;
 
 import com.epam.rd.denis.springshop.entity.Category;
+import com.epam.rd.denis.springshop.entity.CategoryNameEnum;
 
 import java.util.List;
 
 public interface CategoryDao {
 
-    //узнать как лучше поступить с категориями
-    //узнать как лучше поступить с ордером
 
     void addCategory(Category category);
+
     void removeCategory(int id);
+
     void updateCategory(Category category);
-    Category getCategoryByName(String name);
+
+    Category getCategoryByName(CategoryNameEnum name);
+
     List<Category> getCategoryList();
 
 }

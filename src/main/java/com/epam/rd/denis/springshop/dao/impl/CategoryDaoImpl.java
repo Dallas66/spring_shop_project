@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
 
@@ -14,9 +15,9 @@ public class CategoryDaoImpl implements CategoryDao {
 
 
     public CategoryDaoImpl() {
-        Category category = new Category(1,CategoryNameEnum.FIRST_CAT.toString());
-        Category category2 = new Category(2,CategoryNameEnum.SECOND_CAT.toString());
-        Category category3 = new Category(3,CategoryNameEnum.THIRD_CAT.toString());
+        Category category = new Category(1, CategoryNameEnum.FIRST_CAT);
+        Category category2 = new Category(2, CategoryNameEnum.SECOND_CAT);
+        Category category3 = new Category(3, CategoryNameEnum.THIRD_CAT);
         catRepository.add(category);
         catRepository.add(category2);
         catRepository.add(category3);
@@ -29,7 +30,8 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public void removeCategory(int id) {
-
+        Category category = catRepository.stream().filter(category1 -> category1.getId() == id).findFirst().orElse(null);
+        catRepository.remove(category);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public Category getCategoryByName(String name) {
+    public Category getCategoryByName(CategoryNameEnum name) {
         return catRepository.stream().filter(category -> category.getName().equals(name)).findFirst().orElse(null);
     }
 

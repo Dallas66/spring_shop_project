@@ -1,5 +1,6 @@
 package com.epam.rd.denis.springshop.controllers;
 
+import com.epam.rd.denis.springshop.dao.OrderDao;
 import com.epam.rd.denis.springshop.entity.Category;
 import com.epam.rd.denis.springshop.entity.Product;
 import com.epam.rd.denis.springshop.entity.Search;
@@ -22,6 +23,8 @@ public class MainController {
     ProductService productService;
     @Autowired
     CategoryServiceImpl categoryService;
+    @Autowired
+    OrderDao orderDao;
 
     @GetMapping("/index1")
     public ModelAndView auth() {
@@ -33,10 +36,16 @@ public class MainController {
             category.setProdList(productService.getProductsByCategory(category.getName()));
         }
 
+        int sum = 0;
+        for (Product product : orderDao.getOrder().getProductList()) {
+            sum += product.getPrice();
+        }
 
         modelAndView.addObject("categList", listOfCategory);
         modelAndView.addObject("user", userManager.getCurrentUser());
-        modelAndView.addObject("search",new Search());
+        modelAndView.addObject("search", new Search());
+        modelAndView.addObject("sum", sum);
+        modelAndView.addObject("orderList", orderDao.getOrder().getProductList());
         modelAndView.setViewName("index1");
 
         return modelAndView;
@@ -44,7 +53,7 @@ public class MainController {
 
 
     @PostMapping("/index1")
-    public ModelAndView searchBar(@ModelAttribute("search") Search search,ModelAndView modelAndView) {
+    public ModelAndView searchBar(@ModelAttribute("search") Search search, ModelAndView modelAndView) {
         List<Product> searchList = productService.getProductByName(search.getName());
         modelAndView.addObject("searchList", searchList);
 
@@ -58,6 +67,34 @@ public class MainController {
         modelAndView.addObject("user", userManager.getCurrentUser());
         modelAndView.setViewName("index1");
 
+        return modelAndView;
+    }
+
+    @GetMapping("add/{id}")
+    public ModelAndView addToCartById(@PathVariable int id, ModelAndView modelAndView) {
+
+        orderDao.addToOrder(productService.getProductById(id));
+
+        int sum = 0;
+        for (Product product : orderDao.getOrder().getProductList()) {
+            sum += product.getPrice();
+        }
+
+        modelAndView.setViewName("redirect:/index1");
+        return modelAndView;
+    }
+
+    @GetMapping("delete/{id}")
+    public ModelAndView deleteFromCart(@PathVariable int id, ModelAndView modelAndView) {
+        orderDao.removeFromOrder(productService.getProductById(id));
+        modelAndView.setViewName("redirect:/index1");
+        return modelAndView;
+    }
+
+    @GetMapping("logout")
+    public ModelAndView logout() {
+        ModelAndView modelAndView = new ModelAndView("redirect:/autorization");
+        userManager.setCurrentUser(null);
         return modelAndView;
     }
 }

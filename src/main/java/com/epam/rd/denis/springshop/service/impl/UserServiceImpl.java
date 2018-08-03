@@ -24,10 +24,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User authenticateUser(Login login) throws UserNotFoundException, InvalidPasswordException {
         User userReturn = userDao.getUserByLogin(login.getLogin());
-        if (userReturn == null){
+        if (userReturn == null) {
             throw new UserNotFoundException();
         }
-        if (!userReturn.getPassword().equals(login.getPassword())){
+        if (!userReturn.getPassword().equals(login.getPassword())) {
             throw new InvalidPasswordException();
         }
         return userReturn;
