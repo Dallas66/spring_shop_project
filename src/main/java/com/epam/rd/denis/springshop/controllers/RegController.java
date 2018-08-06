@@ -1,9 +1,11 @@
 package com.epam.rd.denis.springshop.controllers;
 
 import com.epam.rd.denis.springshop.entity.Login;
+import com.epam.rd.denis.springshop.entity.Order;
 import com.epam.rd.denis.springshop.entity.RoleEnum;
 import com.epam.rd.denis.springshop.entity.User;
 import com.epam.rd.denis.springshop.managers.UserManager;
+import com.epam.rd.denis.springshop.service.OrderService;
 import com.epam.rd.denis.springshop.service.UserService;
 import com.epam.rd.denis.springshop.validators.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class RegController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
+    @Autowired
+    private OrderService orderService;
 
 
     @GetMapping("/registration")
@@ -40,6 +44,7 @@ public class RegController {
         if (!result.hasErrors()) {
             user.setRole(RoleEnum.USER);
             userService.addUser(user);
+            orderService.addOrderWithUser(user);
         }
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("registration", "user", user);
@@ -47,7 +52,7 @@ public class RegController {
 
         }
 
-        return new ModelAndView("autorization", "loginModel", new Login());
+        return new ModelAndView("autorization"/*, "loginModel", new Login()*/);
 
     }
 }

@@ -12,7 +12,7 @@ public interface CategoryService {
 
     void updateCategory(Category category);
 
-    Category getCategoryByName(CategoryNameEnum name);
+    Category getCategoryByName(String name);
 
     List<Category> getCategoryList();
 }

@@ -4,32 +4,40 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(includeFieldNames = true)
+@ToString(callSuper=true)
 @EqualsAndHashCode
-@Entity(name = "products")
+@Entity
+@Table(name = "products")
 public class Product {
-    @NotNull
+
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotNull
     @Column(name = "name")
     private String name;
+
     @Column(name = "img")
     private String img;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "price")
     private int price;
-    @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "category_id")
     private Category category;
-    @OneToMany
-    private List<ProductsInOrder> productsInOrders;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductsInOrder> productsInOrders;
 }

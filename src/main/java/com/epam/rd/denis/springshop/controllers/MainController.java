@@ -33,20 +33,18 @@ public class MainController {
 
         List<Category> listOfCategory = categoryService.getCategoryList();
 
-//        for (Category category : listOfCategory) {
-//            category.setProductList(productService.getProductsByCategory(category.getName()));
-//        }
-//
+        for (Category category : listOfCategory) {
+            category.setProduct(productService.getProductsByCategory(category));
+        }
+
 //        int sum = 0;
-//        for (Product product : orderRepository.getOrder().getProductList()) {
-//            sum += product.getPrice();
-//        }
+
 
         modelAndView.addObject("categList", listOfCategory);
         modelAndView.addObject("user", userManager.getCurrentUser());
         modelAndView.addObject("search", new Search());
 //        modelAndView.addObject("sum", );
-//        modelAndView.addObject("orderList", orderRepository.getOrder().getProductList());
+        modelAndView.addObject("orderList", orderService.getProductsFromOrder(userManager.getCurrentUser().getOrder().getId()));
         modelAndView.setViewName("index1");
 
         return modelAndView;
@@ -60,9 +58,9 @@ public class MainController {
 
         List<Category> listOfCategory = categoryService.getCategoryList();
 
-        for (Category category : listOfCategory) {
+//        for (Category category : listOfCategory) {
 //            category.setProductList(productService.getProductsByCategory(category.getName()));
-        }
+//        }
 
         modelAndView.addObject("categList", listOfCategory);
         modelAndView.addObject("user", userManager.getCurrentUser());
@@ -72,9 +70,9 @@ public class MainController {
     }
 
     @GetMapping("add/{id}")
-    public ModelAndView addToCartById(@PathVariable int id, ModelAndView modelAndView) {
+    public ModelAndView addToCartById(@PathVariable long id, ModelAndView modelAndView) {
 
-//        orderService.addToOrder(productService.getProductById(id));
+       orderService.addToOrder(id,orderService.getOrderById(userManager.getCurrentUser().getOrder().getId()),1);
 
         int sum = 0;
 //        for (Product product : orderRepository.getOrder().getProductList()) {
@@ -86,8 +84,8 @@ public class MainController {
     }
 
     @GetMapping("delete/{id}")
-    public ModelAndView deleteFromCart(@PathVariable int id, ModelAndView modelAndView) {
-//        orderRepository.removeFromOrder(productService.getProductById(id));
+    public ModelAndView deleteFromCart(@PathVariable long id, ModelAndView modelAndView) {
+        orderService.removeFromOrder(id);
         modelAndView.setViewName("redirect:/index1");
         return modelAndView;
     }

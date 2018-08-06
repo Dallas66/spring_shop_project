@@ -6,26 +6,28 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @ToString(includeFieldNames = true)
-@Entity(name = "users")
+@Entity
 @EqualsAndHashCode
+@Table(name = "users")
 public class User {
-    @NotNull
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
     @NotEmpty(message = "Please enter your Name.")
-    @Column(name = "name")
+//    @Column(name = "name")
     private String name;
 
     @NotNull
     @NotEmpty(message = "Please enter your Last Name.")
-    @Column(name = "lname")
+//    @Column(name = "lname")
     private String lname;
 
     @NotNull
@@ -35,18 +37,17 @@ public class User {
 
     @NotNull
     @NotEmpty(message = "Please enter your Password.")
-    @Column(name = "password")
+//    @Column(name = "password")
     private String password;
 
     @NotEmpty(message = "Please rewrite your Password")
     @Transient
     private String confirmPassword;
 
-    @Column(name = "role")
+//    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
+    @OneToOne(mappedBy = "user")
     private Order order;
 }

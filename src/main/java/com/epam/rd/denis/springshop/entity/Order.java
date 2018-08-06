@@ -6,18 +6,23 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode
-@Entity(name = "orders")
+@Entity
+@Table(name = "orders")
 public class Order {
-    @NotNull
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @OneToMany(mappedBy = "orders")
-    private List<User> user;
-    @OneToMany(mappedBy = "orders")
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "order")
     private List<ProductsInOrder> productsInOrders;
 }

@@ -37,11 +37,11 @@
 
 <section>
     <c:forEach items="${categList}" var="category">
-    <h1 class="sticky">${category.name.toString()}</h1>
+    <h1 class="sticky">${category.name}</h1>
     <hr width="75%">
     <div class="site">
         <div class="title">
-            <c:forEach items="${category.prodList}" var="product">
+            <c:forEach items="${category.product}" var="product">
             <div class="item">
                 <img src=${product.img}/>
                 <a href="#quick-view-pop-up${product.id}" class="btn-view">${product.name}</a>
@@ -79,17 +79,17 @@
         <div class="modal-body">
             <div class="cart-content">
                 <div class="cart-sections">
-                    <c:forEach items="${orderList}" var="product">
+                    <c:forEach items="${orderList}" var="pio">
                         <div class="cart-body">
-                            <div class="cart-item-img"><img src=${product.img}/></div>
+                            <div class="cart-item-img"><img src=${pio.product.img}/></div>
                             <div class="cart-item-description">
                     <span>
-												<p class="cart-item-label">${product.description}</p>
-												<p class="cart-item-price">${product.price}$</p>
+												<p class="cart-item-label">${pio.product.description}</p>
+												<p class="cart-item-price">${pio.product.price}$</p>
 											</span>
                             </div>
                             <div class="cart-item-trash">
-                                <div class="item-trash-ic"><a href="/delete/${product.id}">remove</a></div>
+                                <div class="item-trash-ic"><a href="/delete/${pio.id}">remove</a></div>
                                 <%--<span class="item-trash-ic">&#10799;</span>--%>
                             </div>
                         </div>

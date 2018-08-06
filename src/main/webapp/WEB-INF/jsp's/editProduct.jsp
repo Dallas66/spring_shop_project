@@ -74,12 +74,12 @@
         </tr>
         <tr>
             <td>
-                <form:label path="catName">
-                    <spring:message text="catName"/>
+                <form:label path="category">
+                    <spring:message text="category id"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="catName"/>
+                <form:input path="category"/>
             </td>
         </tr>
         <tr>

@@ -16,9 +16,9 @@ public class ProductController {
 
 
     @GetMapping("admin")
-    public ModelAndView getProducts() {
+    public ModelAndView getProducts(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("product", new Product());
+        modelAndView.addObject("product", product);
         modelAndView.addObject("listProducts", productService.productList());
         modelAndView.setViewName("admin");
         return modelAndView;
@@ -27,30 +27,29 @@ public class ProductController {
     @PostMapping("/admin/add")
     public ModelAndView addProduct(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView("redirect:/admin");
-        this.productService.addProduct(product);
+        productService.addProduct(product);
         return modelAndView;
 
     }
-
     @RequestMapping("/admin/remove/{id}")
-    public ModelAndView removeProduct(@PathVariable("id") int id) {
-        this.productService.removeProduct(id);
+    public ModelAndView removeProduct(@PathVariable("id") long id) {
+        productService.removeProduct(id);
         ModelAndView modelAndView = new ModelAndView("redirect:/admin");
 
         return modelAndView;
     }
 
     @RequestMapping("/admin/edit/{id}")
-    public ModelAndView editProduct(@PathVariable("id") int id/*@ModelAttribute("product") Product product*/) {
+    public ModelAndView editProduct(@PathVariable("id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("product", productService.getProductById(id));
 //        modelAndView.addObject("listProducts",productService.productList());
-        modelAndView.setViewName("editUser");
+        modelAndView.setViewName("editProduct");
 
         return modelAndView;
     }
 
-    @RequestMapping("/admin/edit")
+    @PostMapping("/admin/edit")
     public ModelAndView tryEdit(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
         productService.updateProduct(product);

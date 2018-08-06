@@ -9,9 +9,11 @@ import javax.validation.constraints.NotNull;
 @Data
 @ToString(includeFieldNames = true)
 public class Login {
+
     @NotNull
     @NotEmpty(message = "Enter your Login")
     private String login;
+
     @NotNull
     @NotEmpty(message = "Enter your Password")
     private String password;

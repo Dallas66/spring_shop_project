@@ -26,11 +26,11 @@
             <tr>
                 <td>
                     <form:label path="id">
-                        <spring:message text="ID"/>
+                        <spring:message text="id"/>
                     </form:label>
                 </td>
                 <td>
-                    <form:input path="id" size="8"/>
+                    <form:input path="id" />
                 </td>
             </tr>
         <tr>
@@ -75,12 +75,12 @@
         </tr>
         <tr>
             <td>
-                <form:label path="catName">
-                    <spring:message text="catName"/>
+                <form:label path="category">
+                    <spring:message text="category"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="catName"/>
+                <form:input path="category"/>
             </td>
         </tr>
         <tr>
@@ -120,7 +120,7 @@
                 <td>${product.img}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
-                <td>${product.catName}</td>
+                <td>${product.category.name}</td>
                 <td><a href="<c:url value='/admin/edit/${product.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/admin/remove/${product.id}'/> ">Remove</a></td>
             </tr>

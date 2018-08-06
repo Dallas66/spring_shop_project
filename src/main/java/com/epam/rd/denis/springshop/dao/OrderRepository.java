@@ -8,18 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-//    void addToOrder(Product product);
-//
-//    void removeFromOrder(Product product);
-//
-//    Order getOrder();
-//
-//    void addOrder(Order order);
-//
-//    void removeOrder(int id);
-//
-//    Order getOrderByUserId(int id);
-//
-//    void setUserId(int id);
-
 }

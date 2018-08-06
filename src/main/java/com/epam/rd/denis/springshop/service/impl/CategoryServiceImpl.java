@@ -2,7 +2,6 @@ package com.epam.rd.denis.springshop.service.impl;
 
 import com.epam.rd.denis.springshop.dao.CategoryRepository;
 import com.epam.rd.denis.springshop.entity.Category;
-import com.epam.rd.denis.springshop.entity.CategoryNameEnum;
 import com.epam.rd.denis.springshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryByName(CategoryNameEnum name) {
+    public Category getCategoryByName(String name) {
         return categoryRepository.findByName(name);
     }
 

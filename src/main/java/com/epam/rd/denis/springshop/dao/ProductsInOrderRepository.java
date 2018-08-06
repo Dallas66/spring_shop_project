@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductsInOrderRepository extends JpaRepository<ProductsInOrder, Long> {
+
+
 }

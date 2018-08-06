@@ -2,17 +2,21 @@ package com.epam.rd.denis.springshop.service.impl;
 
 import com.epam.rd.denis.springshop.dao.ProductRepository;
 import com.epam.rd.denis.springshop.entity.Category;
-import com.epam.rd.denis.springshop.entity.CategoryNameEnum;
 import com.epam.rd.denis.springshop.entity.Product;
 import com.epam.rd.denis.springshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+//    @PersistenceContext
+//    EntityManager entityManager;
 
     @Autowired
     private ProductRepository productRepository;
@@ -30,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void updateProduct(Product product) {
         productRepository.save(product);
+//        entityManager.merge(product);
     }
 
     @Override

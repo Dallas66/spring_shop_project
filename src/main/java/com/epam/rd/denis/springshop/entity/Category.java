@@ -5,10 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
-@Data
+@Getter @Setter
 @EqualsAndHashCode
-@Entity(name = "categories")
+//@ToString(callSuper=true)
+@Entity
+@Table(name = "categories")
 public class Category {
 
 //    public Category(@NotNull int id, @NotNull CategoryNameEnum name) {
@@ -16,16 +19,17 @@ public class Category {
 //        this.name = name;
 //    }
 
-    @NotNull
+
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotNull
     @Column(name = "name")
-    @Enumerated(EnumType.STRING)
-    private CategoryNameEnum name;
-    @OneToMany(mappedBy = "categories")
-    private List<Product> products;
+    private String name;
+
+    @OneToMany(mappedBy = "category",cascade = {CascadeType.ALL})
+    private List<Product> product;
 
 }
